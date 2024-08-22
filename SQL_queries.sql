@@ -1,8 +1,8 @@
--- Create database
+-- Creating database
 CREATE DATABASE IF NOT EXISTS walmartSales;
 
 
--- Create table
+-- Creating table
 CREATE TABLE IF NOT EXISTS sales(
 	invoice_id VARCHAR(30) NOT NULL PRIMARY KEY,
     branch VARCHAR(5) NOT NULL,
@@ -29,7 +29,7 @@ SELECT
 FROM sales;
 
 
--- Add the time_of_day column
+-- Adding the time_of_day column
 SELECT
 	time,
 	(CASE
@@ -42,9 +42,7 @@ FROM sales;
 
 ALTER TABLE sales ADD COLUMN time_of_day VARCHAR(20);
 
--- For this to work turn off safe mode for update
--- Edit > Preferences > SQL Edito > scroll down and toggle safe mode
--- Reconnect to MySQL: Query > Reconnect to server
+
 UPDATE sales
 SET time_of_day = (
 	CASE
@@ -55,7 +53,7 @@ SET time_of_day = (
 );
 
 
--- Add day_name column
+-- Adding day_name column
 SELECT
 	date,
 	DAYNAME(date)
@@ -67,7 +65,7 @@ UPDATE sales
 SET day_name = DAYNAME(date);
 
 
--- Add month_name column
+-- Adding month_name column
 SELECT
 	date,
 	MONTHNAME(date)
@@ -79,7 +77,7 @@ UPDATE sales
 SET month_name = MONTHNAME(date);
 
 -- --------------------------------------------------------------------
--- ---------------------------- Generic ------------------------------
+-- ----------------- Solving general analysis(City) -------------------
 -- --------------------------------------------------------------------
 -- How many unique cities does the data have?
 SELECT 
@@ -93,7 +91,7 @@ SELECT
 FROM sales;
 
 -- --------------------------------------------------------------------
--- ---------------------------- Product -------------------------------
+-- ---------------- Solving general analysis(Product) -----------------
 -- --------------------------------------------------------------------
 
 -- How many unique product lines does the data have?
@@ -210,7 +208,7 @@ ORDER BY avg_rating DESC;
 -- --------------------------------------------------------------------
 
 -- --------------------------------------------------------------------
--- -------------------------- Customers -------------------------------
+-- ---------------- Solving general analysis(Customers) ---------------
 -- --------------------------------------------------------------------
 
 -- How many unique customer types does the data have?
@@ -308,7 +306,7 @@ ORDER BY total_sales DESC;
 -- --------------------------------------------------------------------
 
 -- --------------------------------------------------------------------
--- ---------------------------- Sales ---------------------------------
+-- ---------------- Solving general analysis(Saless) ------------------
 -- --------------------------------------------------------------------
 
 -- Number of sales made in each time of the day per weekday 
